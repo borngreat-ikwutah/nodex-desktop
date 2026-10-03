@@ -1,0 +1,15 @@
+{
+  "name": "desktop",
+  "outputfilename": "desktop",
+  "frontend:install": "bun install",
+  "frontend:build": "bun run build",
+  "frontend:dev:watcher": "bun run dev",
+  "frontend:dev:serverUrl": "auto",
+  "author": {
+    "name": "borngreat-ikwutah"
+  },
+  "info": {
+    "productName": "desktop",
+    "productVersion": "1.0.0"
+  }
+}
