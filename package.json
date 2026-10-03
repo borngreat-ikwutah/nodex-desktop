@@ -1,5 +1,5 @@
 {
-  "name": "remote-desktop",
+  "name": "nodex-desktop",
   "private": true,
   "scripts": {
     "build": "turbo run build",
@@ -24,6 +24,7 @@
   },
   "workspaces": [
     "apps/*",
+    "apps/desktop/*",
     "packages/*"
   ]
 }

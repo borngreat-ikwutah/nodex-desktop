@@ -1,6 +1,6 @@
-# NodeX Desktop
+# nodex-desktop
 
-NodeX Desktop is a remote desktop application built with [Wails](https://wails.io/), Go, and React. 
+nodex-desktop is a remote desktop application built with [Wails](https://wails.io/), Go, and React. 
 The project is structured as a monorepo using [Turborepo](https://turbo.build/repo).
 
 ## Project Structure
