@@ -38,3 +38,15 @@ This repository enforces strict code quality and performance guardrails. Agents 
   - `bun run lint`
   - `bun run check-types`
   - `bun run build`
+
+## 5. Frontend Architecture & Folder Structure
+
+The frontend (`apps/desktop/frontend`) enforces a strict modular folder structure. Agents must respect and organize code accordingly to maintain separation of concerns:
+
+- `src/components/`: Reusable, generic UI components (e.g., layouts, buttons) that are completely decoupled from domain logic.
+- `src/features/`: Domain-specific modules (e.g., `features/landing`, `features/devices`). Each feature should encapsulate its own components, hooks, api, and utilities (e.g., `features/devices/components/`).
+- `src/routes/`: TanStack Router file-based route definitions. These files should be minimal and primarily import components directly from `features/`.
+- `src/data/`: Static data, mock information, or configuration objects (e.g., `navigation.ts`).
+- `src/hooks/`: Global custom React hooks. Feature-specific hooks should reside within their respective `features/` directory.
+- `src/lib/`: Global utilities, helpers, and configurations.
+- `src/assets/`: Static assets like images, icons, and fonts.
