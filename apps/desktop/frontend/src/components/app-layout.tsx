@@ -64,10 +64,10 @@ export function AppLayout() {
             </SidebarContent>
           </Sidebar>
           <SidebarInset className="flex-1 overflow-hidden bg-transparent">
-            {/* The tailwind demo grid layout */}
-            <div className="relative grid h-full grid-cols-[1fr_2.5rem_auto_2.5rem_1fr] grid-rows-[1fr_1px_auto_1px_1fr] bg-background [--pattern-fg:var(--color-foreground)]/5 dark:[--pattern-fg:var(--color-foreground)]/10">
-              <div className="col-start-3 row-start-3 flex w-full min-w-[50vw] max-w-5xl flex-col bg-muted/50 p-2">
-                <div className="flex-1 rounded-xl bg-card p-8 text-sm/7 text-card-foreground shadow-sm border">
+            {/* The tailwind demo grid layout used as a full-screen frame */}
+            <div className="relative grid h-full grid-cols-[1.5rem_2.5rem_1fr_2.5rem_1.5rem] grid-rows-[1.5rem_1px_1fr_1px_1.5rem] bg-background [--pattern-fg:var(--color-foreground)]/5 dark:[--pattern-fg:var(--color-foreground)]/10">
+              <div className="col-start-3 row-start-3 flex w-full h-full flex-col p-4">
+                <div className="flex-1 rounded-xl bg-card p-8 text-sm/7 text-card-foreground shadow-sm border overflow-auto">
                   <Suspense
                     fallback={<div className="p-4">Loading Workspace...</div>}
                   >
