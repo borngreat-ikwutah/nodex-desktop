@@ -44,12 +44,15 @@ export function AppLayout() {
                   <SidebarMenu>
                     {navigationData.map((item) => (
                       <SidebarMenuItem key={item.title}>
-                        <SidebarMenuButton asChild>
+                        <SidebarMenuButton
+                          asChild
+                          className="h-12 text-base font-medium"
+                        >
                           <Link
                             to={item.url as any}
                             className="[&.active]:bg-sidebar-accent [&.active]:text-sidebar-accent-foreground"
                           >
-                            <item.icon className="size-4" />
+                            <item.icon className="size-5" />
                             <span>{item.title}</span>
                           </Link>
                         </SidebarMenuButton>
@@ -62,9 +65,9 @@ export function AppLayout() {
           </Sidebar>
           <SidebarInset className="flex-1 overflow-hidden bg-transparent">
             {/* The tailwind demo grid layout */}
-            <div className="relative grid h-full grid-cols-[1fr_2.5rem_auto_2.5rem_1fr] grid-rows-[1fr_1px_auto_1px_1fr] bg-white [--pattern-fg:var(--color-gray-950)]/5 dark:bg-gray-950 dark:[--pattern-fg:var(--color-white)]/10">
-              <div className="col-start-3 row-start-3 flex w-full min-w-[50vw] max-w-5xl flex-col bg-gray-100 p-2 dark:bg-white/10">
-                <div className="flex-1 rounded-xl bg-white p-8 text-sm/7 text-gray-700 shadow-sm dark:bg-gray-950 dark:text-gray-300">
+            <div className="relative grid h-full grid-cols-[1fr_2.5rem_auto_2.5rem_1fr] grid-rows-[1fr_1px_auto_1px_1fr] bg-background [--pattern-fg:var(--color-foreground)]/5 dark:[--pattern-fg:var(--color-foreground)]/10">
+              <div className="col-start-3 row-start-3 flex w-full min-w-[50vw] max-w-5xl flex-col bg-muted/50 p-2">
+                <div className="flex-1 rounded-xl bg-card p-8 text-sm/7 text-card-foreground shadow-sm border">
                   <Suspense
                     fallback={<div className="p-4">Loading Workspace...</div>}
                   >
