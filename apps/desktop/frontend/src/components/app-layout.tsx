@@ -64,21 +64,23 @@ export function AppLayout() {
             </SidebarContent>
           </Sidebar>
           <SidebarInset className="flex-1 overflow-hidden bg-transparent">
-            {/* The tailwind demo grid layout used as a full-screen frame */}
-            <div className="relative grid h-full grid-cols-[1.5rem_2.5rem_1fr_2.5rem_1.5rem] grid-rows-[1.5rem_1px_1fr_1px_1.5rem] bg-background [--pattern-fg:var(--color-foreground)]/5 dark:[--pattern-fg:var(--color-foreground)]/10">
-              <div className="col-start-3 row-start-3 flex w-full h-full flex-col p-4">
-                <div className="flex-1 rounded-xl bg-card p-8 text-sm/7 text-card-foreground shadow-sm border overflow-auto">
-                  <Suspense
-                    fallback={<div className="p-4">Loading Workspace...</div>}
-                  >
-                    <Outlet />
-                  </Suspense>
-                </div>
+            <div className="relative grid h-full grid-cols-[1rem_1rem_1fr_1rem_1rem] md:grid-cols-[1.5rem_2.5rem_1fr_2.5rem_1.5rem] grid-rows-[1rem_1px_1fr_1px_1rem] md:grid-rows-[1.5rem_1px_1fr_1px_1.5rem] bg-background [--pattern-fg:var(--color-foreground)]/5 dark:[--pattern-fg:var(--color-foreground)]/10">
+              <div className="relative -right-px col-start-2 row-span-full row-start-1 border-x border-x-(--pattern-fg) bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed pointer-events-none"></div>
+              <div className="relative -left-px col-start-4 row-span-full row-start-1 border-x border-x-(--pattern-fg) bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed pointer-events-none"></div>
+              <div className="relative -bottom-px col-span-full col-start-1 row-start-2 h-px bg-(--pattern-fg) pointer-events-none"></div>
+              <div className="relative -top-px col-span-full col-start-1 row-start-4 h-px bg-(--pattern-fg) pointer-events-none"></div>
+
+              <div className="col-start-3 row-start-3 flex flex-col p-2 lg:p-4 min-h-0 min-w-0 z-10 relative">
+                <Suspense
+                  fallback={
+                    <div className="p-4 flex h-full items-center justify-center">
+                      Loading Workspace...
+                    </div>
+                  }
+                >
+                  <Outlet />
+                </Suspense>
               </div>
-              <div className="relative -right-px col-start-2 row-span-full row-start-1 border-x border-x-(--pattern-fg) bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed"></div>
-              <div className="relative -left-px col-start-4 row-span-full row-start-1 border-x border-x-(--pattern-fg) bg-[image:repeating-linear-gradient(315deg,_var(--pattern-fg)_0,_var(--pattern-fg)_1px,_transparent_0,_transparent_50%)] bg-[size:10px_10px] bg-fixed"></div>
-              <div className="relative -bottom-px col-span-full col-start-1 row-start-2 h-px bg-(--pattern-fg)"></div>
-              <div className="relative -top-px col-span-full col-start-1 row-start-4 h-px bg-(--pattern-fg)"></div>
             </div>
           </SidebarInset>
         </SidebarProvider>
