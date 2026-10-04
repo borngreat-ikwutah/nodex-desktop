@@ -1,26 +1,13 @@
-import { createRootRoute, Link, Outlet } from '@tanstack/react-router'
-import { TanStackRouterDevtools } from '@tanstack/router-devtools'
-import { Suspense } from 'react'
-import '../app.css'
+import { createRootRoute } from "@tanstack/react-router";
+import "../app.css";
+import { AppLayout } from "../components/app-layout";
 
 export const Route = createRootRoute({
-  component: () => (
-    <>
-      <div className="p-2 flex gap-2">
-        <Link to="/" className="[&.active]:font-bold">
-          Home
-        </Link>
-        <Link to="/about" className="[&.active]:font-bold">
-          About
-        </Link>
-      </div>
-      <hr />
-      <Suspense fallback={<div>Loading...</div>}>
-        <Outlet />
-      </Suspense>
-      <TanStackRouterDevtools />
-    </>
+  component: AppLayout,
+  errorComponent: () => (
+    <div className="p-4 text-destructive">
+      Something went wrong at the root!
+    </div>
   ),
-  errorComponent: () => <div>Something went wrong at the root!</div>,
-  pendingComponent: () => <div>Loading root...</div>,
-})
+  pendingComponent: () => <div className="p-4">Loading root...</div>,
+});
