@@ -87,6 +87,7 @@
         "vaul": "^1.1.2",
       },
       "devDependencies": {
+        "@babel/preset-typescript": "8.0.1",
         "@repo/eslint-config": "*",
         "@repo/typescript-config": "*",
         "@tailwindcss/vite": "^4.3.3",
