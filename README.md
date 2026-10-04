@@ -1,6 +1,6 @@
 # nodex-desktop
 
-nodex-desktop is a remote desktop application built with [Wails](https://wails.io/), Go, and React. 
+nodex-desktop is a remote desktop application built with [Wails](https://wails.io/), Go, and React.
 The project is structured as a monorepo using [Turborepo](https://turbo.build/repo).
 
 ## Project Structure
@@ -36,11 +36,11 @@ cd apps/desktop
 wails dev
 ```
 
-*(Note: The frontend scripts are configured to use `bun` within `wails.json`)*
+_(Note: The frontend scripts are configured to use `bun` within `wails.json`)_
 
 ### Shared UI Components
 
-The `packages/ui` library provides pre-built, accessible React components generated via `shadcn/ui`. 
+The `packages/ui` library provides pre-built, accessible React components generated via `shadcn/ui`.
 It has been upgraded and configured with **Tailwind CSS v4**.
 
 When integrating the UI components into an application, ensure you wrap your application root with the necessary providers (e.g., `TooltipProvider`). See `docs/general/ui-setup.md` for more details.

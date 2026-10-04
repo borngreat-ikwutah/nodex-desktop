@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@source "../../../../packages/ui/src";
 @import "@repo/ui/styles.css";
 
 /* Your app specific styles */
