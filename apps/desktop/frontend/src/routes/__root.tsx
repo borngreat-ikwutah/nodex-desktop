@@ -22,7 +22,17 @@ import { TooltipProvider } from "@repo/ui/components/ui/tooltip.tsx";
 import { IconHome, IconInfoCircle } from "@tabler/icons-react";
 
 export const Route = createRootRoute({
-  component: () => (
+  component: AppSidebar,
+  errorComponent: () => (
+    <div className="p-4 text-destructive">
+      Something went wrong at the root!
+    </div>
+  ),
+  pendingComponent: () => <div className="p-4">Loading root...</div>,
+});
+
+function AppSidebar() {
+  return (
     <TooltipProvider>
       <SidebarProvider>
         <Sidebar>
@@ -74,11 +84,5 @@ export const Route = createRootRoute({
         <TanStackRouterDevtools />
       </SidebarProvider>
     </TooltipProvider>
-  ),
-  errorComponent: () => (
-    <div className="p-4 text-destructive">
-      Something went wrong at the root!
-    </div>
-  ),
-  pendingComponent: () => <div className="p-4">Loading root...</div>,
-});
+  );
+}
