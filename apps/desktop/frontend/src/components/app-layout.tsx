@@ -13,6 +13,7 @@ import {
   SidebarInset,
 } from "@repo/ui/components/ui/sidebar.tsx";
 import { TooltipProvider } from "@repo/ui/components/ui/tooltip.tsx";
+import { Toaster } from "sonner";
 import { IconDiamondFilled, IconCircle } from "@tabler/icons-react";
 import { navigationData } from "../data/navigation";
 
@@ -34,7 +35,7 @@ function TitleBar() {
 export function AppLayout() {
   return (
     <TooltipProvider>
-      <div className="flex h-screen flex-col overflow-hidden bg-background text-foreground">
+      <div className="flex h-screen flex-col overflow-hidden bg-background text-foreground select-none">
         <TitleBar />
         <SidebarProvider className="flex-1 overflow-hidden">
           <Sidebar className="border-r">
@@ -85,6 +86,7 @@ export function AppLayout() {
           </SidebarInset>
         </SidebarProvider>
       </div>
+      <Toaster theme="dark" />
       <TanStackRouterDevtools />
     </TooltipProvider>
   );
