@@ -9,7 +9,7 @@ import {
 export const navigationData = [
   {
     title: "Home",
-    url: "/",
+    url: "/home",
     icon: IconHome,
   },
   {

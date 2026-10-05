@@ -15,6 +15,7 @@ import { Route as SessionsRouteImport } from './routes/sessions'
 import { Route as SettingsRouteImport } from './routes/settings'
 import { Route as TransfersRouteImport } from './routes/transfers'
 import { Route as landingIndexRouteImport } from './routes/(landing)/index'
+import { Route as HomeIndexRouteImport } from './routes/home/index'
 
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
@@ -46,6 +47,11 @@ const landingIndexRoute = landingIndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const HomeIndexRoute = HomeIndexRouteImport.update({
+  id: '/home/',
+  path: '/home/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
@@ -54,6 +60,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof SettingsRoute
   '/transfers': typeof TransfersRoute
   '/': typeof landingIndexRoute
+  '/home/': typeof HomeIndexRoute
 }
 export interface FileRoutesByTo {
   '/about': typeof AboutRoute
@@ -62,6 +69,7 @@ export interface FileRoutesByTo {
   '/settings': typeof SettingsRoute
   '/transfers': typeof TransfersRoute
   '/': typeof landingIndexRoute
+  '/home': typeof HomeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,13 +79,27 @@ export interface FileRoutesById {
   '/settings': typeof SettingsRoute
   '/transfers': typeof TransfersRoute
   '/(landing)/': typeof landingIndexRoute
+  '/home/': typeof HomeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/about' | '/devices' | '/sessions' | '/settings' | '/transfers' | '/'
+    | '/about'
+    | '/devices'
+    | '/sessions'
+    | '/settings'
+    | '/transfers'
+    | '/'
+    | '/home/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/about' | '/devices' | '/sessions' | '/settings' | '/transfers' | '/'
+  to:
+    | '/about'
+    | '/devices'
+    | '/sessions'
+    | '/settings'
+    | '/transfers'
+    | '/'
+    | '/home'
   id:
     | '__root__'
     | '/about'
@@ -86,6 +108,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/transfers'
     | '/(landing)/'
+    | '/home/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,6 +118,7 @@ export interface RootRouteChildren {
   SettingsRoute: typeof SettingsRoute
   TransfersRoute: typeof TransfersRoute
   landingIndexRoute: typeof landingIndexRoute
+  HomeIndexRoute: typeof HomeIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -141,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof landingIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/home/': {
+      id: '/home/'
+      path: '/home'
+      fullPath: '/home/'
+      preLoaderRoute: typeof HomeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -151,6 +182,7 @@ const rootRouteChildren: RootRouteChildren = {
   SettingsRoute: SettingsRoute,
   TransfersRoute: TransfersRoute,
   landingIndexRoute: landingIndexRoute,
+  HomeIndexRoute: HomeIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
