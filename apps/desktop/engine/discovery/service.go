@@ -4,7 +4,6 @@ import (
 	"context"
 	"log"
 	"sync"
-	"time"
 
 	"github.com/grandcat/zeroconf"
 	"github.com/wailsapp/wails/v2/pkg/runtime"
@@ -117,15 +116,10 @@ func (s *Service) browse() {
 		}
 	}(entries)
 
-	// Continually browse, refreshing the query every 15 seconds
-	for {
-		ctx, cancel := context.WithTimeout(context.Background(), time.Second*15)
-		err = resolver.Browse(ctx, "_nodex._tcp", "local.", entries)
-		if err != nil {
-			log.Println("discovery: browse error:", err)
-		}
-		<-ctx.Done()
-		cancel()
+	// Browse continuously until the app shuts down
+	err = resolver.Browse(s.ctx, "_nodex._tcp", "local.", entries)
+	if err != nil {
+		log.Println("discovery: browse error:", err)
 	}
 }
 
