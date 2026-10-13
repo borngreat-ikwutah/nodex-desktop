@@ -9,6 +9,8 @@ import (
 
 	"nodex-desktop/engine/discovery"
 	"nodex-desktop/engine/identity"
+	"nodex-desktop/engine/media"
+	"nodex-desktop/engine/transport"
 )
 
 //go:embed all:frontend/dist
@@ -22,11 +24,18 @@ func main() {
 		return
 	}
 
-	// Initialize discovery engine
-	nodeDiscovery := discovery.NewService(nodeIdentity.GetIdentity())
+	// Initialize transport engine (TCP Server & Client)
+	nodeTransport := transport.NewService(nodeIdentity.GetIdentity(), nodeIdentity.SigningKey())
+
+	// Initialize discovery engine (advertising the transport port)
+	nodeDiscovery := discovery.NewService(
+		nodeIdentity.GetIdentity(),
+		discovery.WithTransportPort(nodeTransport.Port()),
+	)
+	nodeMedia := media.NewService(nodeIdentity.GetIdentity())
 
 	// Create an instance of the app structure
-	app := NewApp(nodeIdentity, nodeDiscovery)
+	app := NewApp(nodeIdentity, nodeDiscovery, nodeTransport, nodeMedia)
 
 	// Create application with options
 	err = wails.Run(&options.App{
@@ -38,6 +47,7 @@ func main() {
 		},
 		BackgroundColour: &options.RGBA{R: 27, G: 38, B: 54, A: 1},
 		OnStartup:        app.startup,
+		OnShutdown:       app.shutdown,
 		Bind: []interface{}{
 			app,
 		},

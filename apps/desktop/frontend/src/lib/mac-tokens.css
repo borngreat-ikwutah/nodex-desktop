@@ -1,0 +1,193 @@
+/* Nodex macOS Liquid Glass tokens — Tahoe 26 language in CSS.
+   Stand-ins for NSVisualEffectView / NSGlassEffectView.
+   Light = white translucency, Dark = graphite translucency.
+   Accent stays Nodex green per product decision. */
+
+:root {
+  --mac-font:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", "SF Pro Display",
+    "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mac-font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, monospace;
+
+  --mac-window-radius: 20px;
+  --mac-bar-radius: 14px;
+  --mac-card-radius: 12px;
+  --mac-control-radius: 8px;
+
+  --mac-ease: cubic-bezier(0.32, 0.72, 0, 1);
+  --mac-duration: 200ms;
+
+  --mac-traffic-inset: 76px;
+}
+
+/* ---- Glass materials ---- */
+.glass-thin,
+.glass-regular,
+.glass-prominent,
+.glass-sidebar,
+.glass-toolbar {
+  -webkit-backdrop-filter: blur(28px) saturate(1.7) brightness(1.04);
+  backdrop-filter: blur(28px) saturate(1.7) brightness(1.04);
+  background: color-mix(in srgb, var(--card) 58%, transparent);
+  border: 1px solid rgb(255 255 255 / 0.16);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.22),
+    0 12px 32px -16px rgb(0 0 0 / 0.28);
+}
+
+.glass-regular {
+  -webkit-backdrop-filter: blur(36px) saturate(1.8) brightness(1.03);
+  backdrop-filter: blur(36px) saturate(1.8) brightness(1.03);
+  background: color-mix(in srgb, var(--card) 66%, transparent);
+}
+
+.glass-prominent {
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--primary) 16%, transparent),
+      color-mix(in srgb, var(--primary) 16%, transparent)
+    ),
+    color-mix(in srgb, var(--card) 62%, transparent);
+  border-color: color-mix(in srgb, var(--primary) 38%, rgb(255 255 255 / 0.2));
+}
+
+.glass-sidebar {
+  border-radius: var(--mac-bar-radius);
+}
+
+.glass-toolbar {
+  border-radius: 999px;
+}
+
+.dark .glass-thin,
+.dark .glass-regular,
+.dark .glass-prominent,
+.dark .glass-sidebar,
+.dark .glass-toolbar {
+  background: color-mix(in srgb, oklch(0.22 0.01 285) 58%, transparent);
+  border-color: rgb(255 255 255 / 0.12);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.1),
+    0 16px 40px -20px rgb(0 0 0 / 0.7);
+}
+
+.dark .glass-regular {
+  background: color-mix(in srgb, oklch(0.22 0.01 285) 66%, transparent);
+}
+
+.dark .glass-prominent {
+  background:
+    linear-gradient(
+      color-mix(in srgb, var(--primary) 22%, transparent),
+      color-mix(in srgb, var(--primary) 22%, transparent)
+    ),
+    color-mix(in srgb, oklch(0.22 0.01 285) 60%, transparent);
+}
+
+/* Vibrancy root painted by Wails transparent window */
+.mac-vibrancy {
+  background:
+    radial-gradient(
+      1200px 500px at 15% -10%,
+      color-mix(in srgb, var(--primary) 10%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      900px 480px at 90% 0%,
+      color-mix(in srgb, #7c6cf0 9%, transparent),
+      transparent 60%
+    ),
+    color-mix(in srgb, var(--background) 72%, transparent);
+}
+
+.dark .mac-vibrancy {
+  background:
+    radial-gradient(
+      1100px 520px at 12% -10%,
+      color-mix(in srgb, var(--primary) 14%, transparent),
+      transparent 62%
+    ),
+    radial-gradient(
+      900px 500px at 88% -4%,
+      color-mix(in srgb, #6d5ef0 12%, transparent),
+      transparent 60%
+    ),
+    color-mix(in srgb, oklch(0.16 0.008 285) 78%, transparent);
+}
+
+/* Wails drag region for the native traffic-light toolbar area */
+.mac-drag {
+  -webkit-app-region: drag;
+  app-region: drag;
+}
+.mac-no-drag {
+  -webkit-app-region: no-drag;
+  app-region: no-drag;
+}
+
+/* Hard scroll-edge separation under floating bars (macOS style) */
+.mac-scroll-edge-top {
+  mask-image: linear-gradient(to bottom, transparent 0, black 28px);
+}
+.mac-scroll-fade {
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--background) 88%, transparent),
+    transparent
+  );
+  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  backdrop-filter: blur(20px) saturate(1.5);
+}
+
+/* Native-feeling controls */
+.mac-capsule {
+  border-radius: 999px !important;
+}
+.mac-press {
+  transition:
+    transform var(--mac-duration) var(--mac-ease),
+    background-color var(--mac-duration) var(--mac-ease),
+    box-shadow var(--mac-duration) var(--mac-ease);
+}
+.mac-press:active {
+  transform: scale(0.97);
+}
+.mac-tabular {
+  font-variant-numeric: tabular-nums;
+  font-family: var(--mac-font-mono);
+}
+
+/* Legibility wash for text directly on glass */
+.mac-glass-text {
+  text-shadow: 0 1px 12px rgb(0 0 0 / 0.14);
+}
+.dark .mac-glass-text {
+  text-shadow: 0 1px 12px rgb(0 0 0 / 0.45);
+}
+
+/* Keyboard focus follows macOS ring */
+.mac-focus:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--primary) 70%, white);
+  outline-offset: 2px;
+}
+
+@media (prefers-contrast: more) {
+  .glass-thin,
+  .glass-regular,
+  .glass-prominent,
+  .glass-sidebar,
+  .glass-toolbar {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: var(--card);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mac-press {
+    transition: none;
+  }
+  .mac-press:active {
+    transform: none;
+  }
+}
