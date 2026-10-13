@@ -1,5 +1,7 @@
 package identity
 
+import "crypto/ed25519"
+
 // Service is the Wails-bound facade over the identity Manager.
 type Service struct {
 	manager *Manager
@@ -29,3 +31,9 @@ func (s *Service) GetPublicKey() string { return s.manager.identity.PublicKey }
 
 // KeyPath returns the absolute path of the persisted machine key file.
 func (s *Service) KeyPath() string { return s.manager.Path() }
+
+// SigningKey returns the private signing key for internal engine use.
+// It is not exposed through App or the Wails bridge.
+func (s *Service) SigningKey() ed25519.PrivateKey {
+	return ed25519.NewKeyFromSeed(s.manager.identity.Seed.Seed())
+}
